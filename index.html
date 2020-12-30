@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1,
+  maximum-scale=5"
+    />
+    <link rel="icon" href="./assets/img/devchallenges.png" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="https://devchallenges.io/"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/styles/styles.css" />
+    <title>Country Quizz | Devchallenges</title>
+  </head>
+  <body>
+    <section class="quizz-container">
+      <h1 class="main-heading">country quiz</h1>
+      <article class="questions-contain">
+        <p class="question-name">Kuala Lumpur is the capital of</p>
+        <ul class="questions-list" id="answers">
+          <li class="question-item">Vietnam</li>
+          <li class="question-item">Malaysia</li>
+          <li class="question-item">Sweden</li>
+          <li class="question-item">Austria</li>
+        </ul>
+        <button class="btn btn--orange" id="btnNext">Next</button>
+        <div class="window-winner disabled">
+          <span class="winner-img"></span>
+          <h2 class="winner-title">Results</h2>
+          <p class="results">
+            you got <span class="score" id="score">4</span> corrects answers
+          </p>
+          <button class="btn btn--white" id="restart">Try again</button>
+        </div>
+      </article>
+    </section>
+    <script type="module" src="./assets/js/app.js"></script>
+  </body>
+</html>
