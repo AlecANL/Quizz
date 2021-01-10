@@ -6,6 +6,12 @@ async function getData(url) {
   return data;
 }
 
+/**
+ *
+ * @param {*} countries
+ * @returns country,
+ * this function receive all countries and return only one country
+ */
 function getRandomCountry(countries) {
   const random = Math.floor(Math.random() * countries.length);
   return {
@@ -14,13 +20,36 @@ function getRandomCountry(countries) {
   };
 }
 
+/**
+ *
+ * @param {*} country
+ * @param {*} countries
+ * @returns {*} randomCountries
+ *
+ * this function get currentQuestion and all questions,
+ * clea all questios with slice method and loop arr and build posibles answers
+ */
 function getRandomCountries(country, countries) {
   const random = Math.floor(Math.random() * (countries.length - 50));
   const randomCountries = countries.slice(random, random + 3);
-  return randomCountries.filter(el => {
-    return el.name !== country.name;
+  return randomCountries.map(el => {
+    // add tag isCorrect a posibble answer
+    country.isCorrect = true;
+    return {
+      name: el.name,
+      capital: el.capital,
+      isCorrect: false,
+    };
   });
+  /**
+   * return randomCountries.filter(el => {
+   * return el.name !== country.name
+   * })
+   *
+   */
 }
+
+// Change position into arr with posible options
 function moveRandomOptions(arr) {
   let currentIdx = arr.length,
     tempValue,
@@ -37,6 +66,8 @@ function moveRandomOptions(arr) {
   return arr;
 }
 
+// build object to contain question, correctQuestion an options
+// options contain all posibles answers and correct
 async function buildQuestion() {
   try {
     const countries = await getData(api);
@@ -50,57 +81,22 @@ async function buildQuestion() {
         ...getRandomCountries(country, countries),
       ]),
     };
-    console.log(quizz);
+    return quizz;
   } catch (err) {
     console.warn(err);
   }
 }
-buildQuestion();
-buildQuestion();
-buildQuestion();
-buildQuestion();
-buildQuestion();
 
-// async function cleanData() {
-//   const data = await getData(api);
-//   const random = Math.floor(Math.random() * 200 + 0);
-//   const countries = data.slice(random, random + 5);
-//   return countries;
-// }
+// this function generate all questions to populate quizz
+async function generateQuestions(limit = 5) {
+  const questions = [];
+  for (let i = 0; i < limit; i++) {
+    const q = await buildQuestion();
+    questions.push(q);
+  }
+  return questions;
+}
 
-// async function buildQuestions() {
-//   const countries = await cleanData();
+const questions = generateQuestions();
 
-//   const questions = countries.map((country, index) => {
-//     const orderedOptions = countries.map(c => {
-//       if (c.name === countries[index].name) {
-//         return {
-//           capital: country.capital,
-//           isCorrect: true,
-//         };
-//       } else {
-//         return {
-//           capital: c.capital,
-//           isCorrect: false,
-//         };
-//       }
-//     });
-//     const random = Math.floor(Math.random() * countries.length + 0);
-//     const options = moveRandomOptions(orderedOptions, 0, random);
-
-//     return {
-//       name: country.name,
-//       options,
-//     };
-//   });
-//   return questions;
-// }
-
-// function moveRandomOptions(arr, fromIndex, toIndex) {
-//   const element = arr[fromIndex];
-//   arr.splice(fromIndex, 1);
-//   arr.splice(toIndex, 0, element);
-//   return arr;
-// }
-
-// buildQuestions();
+export { questions };
