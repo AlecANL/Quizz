@@ -61,20 +61,24 @@ body {
           flex-direction: column;
 }
 
-.questions-contain::before {
-  content: '';
+.questions-contain img {
   position: absolute;
-  top: -10%;
   right: 0;
+  top: -6%;
   width: 100px;
-  height: 100px;
-  display: block;
-  background: url(../img/main-image.svg) center/contain no-repeat;
+}
+
+@media screen and (min-width: 768px) {
+  .questions-contain img {
+    top: -13%;
+    width: 150px;
+  }
 }
 
 .questions-list {
   list-style: none;
-  margin-top: 2.5rem;
+  margin-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .question-item {
@@ -136,15 +140,17 @@ body {
 }
 
 .question-name {
+  min-height: 60px;
+  padding: 1rem;
+  margin-top: 2rem;
   font-size: 2.4rem;
   line-height: 3.6rem;
   color: #2f527b;
   font-weight: bold;
-  padding: 1rem;
-  margin-top: 2rem;
 }
 
 .error {
+  position: relative;
   border: 2px solid var(--warning);
   background-color: var(--warning);
   color: var(--just-white);
@@ -155,7 +161,20 @@ body {
   background-color: var(--warning);
 }
 
+.error::after {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  right: 20px;
+  background: url(../img/error.svg) center/cover no-repeat;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
 .success {
+  position: relative;
   border: 2px solid var(--success);
   background-color: var(--success);
   color: var(--just-white);
@@ -164,6 +183,16 @@ body {
 .success:hover {
   border: 2px solid var(--success);
   background-color: var(--success);
+}
+
+.success::after {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: url(../img/success.svg) center/cover no-repeat;
+  right: 20px;
 }
 
 .btn {

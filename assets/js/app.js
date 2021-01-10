@@ -91,8 +91,8 @@ function initalState() {
 }
 
 function restartQuizz() {
-  $windowWinner.classList.add('disabled');
   $logo.classList.remove('disabled');
+  $windowWinner.classList.add('disabled');
   answer = undefined;
   currentQuestion = 0;
   currentScore = 0;

@@ -68,21 +68,33 @@ body {
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  &::before {
-    content: '';
+  & img {
     position: absolute;
-    top: -10%;
     right: 0;
+    top: -6%;
     width: 100px;
-    height: 100px;
-    display: block;
-    background: url(../img/main-image.svg) center/contain no-repeat;
-    // display: none;
+    @include from(m) {
+      top: -13%;
+      // right: -1%;
+      width: 150px;
+    }
   }
+  // &::before {
+  //   content: '';
+  //   position: absolute;
+  //   top: -10%;
+  //   right: 0;
+  //   width: 100px;
+  //   height: 100px;
+  //   display: block;
+  //   background: url(../img/main-image.svg) center/contain no-repeat;
+  //   // display: none;
+  // }
 }
 .questions-list {
   list-style: none;
-  margin-top: 2.5rem;
+  margin-top: 1rem;
+  padding-bottom: 1rem;
 }
 .question-item {
   @include from(m) {
@@ -131,14 +143,16 @@ body {
   text-transform: uppercase;
 }
 .question-name {
+  min-height: 60px;
+  padding: 1rem;
+  margin-top: 2rem;
   font-size: 2.4rem;
   line-height: 3.6rem;
   color: rgba(47, 82, 123, 1);
   font-weight: bold;
-  padding: 1rem;
-  margin-top: 2rem;
 }
 .error {
+  position: relative;
   border: 2px solid var(--warning);
   background-color: var(--warning);
   color: var(--just-white);
@@ -146,14 +160,34 @@ body {
     border: 2px solid var(--warning);
     background-color: var(--warning);
   }
+  &::after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    right: 20px;
+    background: url(../img/error.svg) center/cover no-repeat;
+    transform: rotate(45deg);
+  }
 }
 .success {
+  position: relative;
   border: 2px solid var(--success);
   background-color: var(--success);
   color: var(--just-white);
   &:hover {
     border: 2px solid var(--success);
     background-color: var(--success);
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: url(../img/success.svg) center/cover no-repeat;
+    right: 20px;
   }
 }
 .btn {
