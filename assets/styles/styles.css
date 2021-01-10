@@ -36,8 +36,14 @@ body {
   padding: 1rem;
   width: 100%;
   min-width: 288px;
-  max-width: 400px;
+  max-width: 450px;
   margin: 0 auto;
+}
+
+@media screen and (min-width: 1200px) {
+  .quizz-container {
+    max-width: 480px;
+  }
 }
 
 .questions-contain {
@@ -72,15 +78,23 @@ body {
 }
 
 .question-item {
-  padding: 1rem;
-  margin: 2rem;
+  padding: 1.6rem;
+  margin: 1.5rem 0.5rem;
   border: 2px solid var(--soft-blue);
   font-size: 1.8rem;
-  font-weight: 500;
+  font-weight: lighter;
   line-height: 2.4rem;
   border-radius: 1.2rem;
   color: var(--soft-blue);
   cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .question-item {
+    padding: 2rem;
+    height: 70px;
+    margin: 1.5rem 1rem;
+  }
 }
 
 .question-item:hover {
@@ -89,6 +103,28 @@ body {
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   border: 2px solid var(--hover-color);
+}
+
+.question-item:nth-of-type(n)::before {
+  padding-right: 1rem;
+  font-size: 2.2rem;
+  font-weight: bold;
+}
+
+.question-item:nth-child(1)::before {
+  content: 'A';
+}
+
+.question-item:nth-child(2)::before {
+  content: 'B';
+}
+
+.question-item:nth-child(3)::before {
+  content: 'C';
+}
+
+.question-item:nth-child(4)::before {
+  content: 'D';
 }
 
 .main-heading {

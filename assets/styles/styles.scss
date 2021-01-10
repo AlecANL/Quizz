@@ -1,5 +1,25 @@
 $devMode: false;
 
+$breakpoints: (
+  s: 460px,
+  m: 768px,
+  l: 1024px,
+  x: 1200px,
+  xl: 1400px,
+);
+
+@mixin from($bp) {
+  @if (map-has-key($breakpoints, $bp)) {
+    @media screen and (min-width: map-get($breakpoints , $bp )) {
+      @content;
+    }
+  } @else {
+    @media screen and (min-width: $bp) {
+      @content;
+    }
+  }
+}
+
 :root {
   --just-white: #fff;
   --soft-blue: hsla(237, 54%, 60%, 0.7);
@@ -34,8 +54,11 @@ body {
   padding: 1rem;
   width: 100%;
   min-width: 288px;
-  max-width: 400px;
+  max-width: 450px;
   margin: 0 auto;
+  @include from(x) {
+    max-width: 480px;
+  }
 }
 .questions-contain {
   position: relative;
@@ -62,11 +85,16 @@ body {
   margin-top: 2.5rem;
 }
 .question-item {
-  padding: 1rem;
-  margin: 2rem;
+  @include from(m) {
+    padding: 2rem;
+    height: 70px;
+    margin: 1.5rem 1rem;
+  }
+  padding: 1.6rem;
+  margin: 1.5rem 0.5rem;
   border: 2px solid var(--soft-blue);
   font-size: 1.8rem;
-  font-weight: 500;
+  font-weight: lighter;
   line-height: 2.4rem;
   border-radius: 1.2rem;
   color: var(--soft-blue);
@@ -76,6 +104,23 @@ body {
     color: var(--just-white);
     transition: all 0.2s ease-in-out;
     border: 2px solid var(--hover-color);
+  }
+  &:nth-of-type(n)::before {
+    padding-right: 1rem;
+    font-size: 2.2rem;
+    font-weight: bold;
+  }
+  &:nth-child(1)::before {
+    content: 'A';
+  }
+  &:nth-child(2)::before {
+    content: 'B';
+  }
+  &:nth-child(3)::before {
+    content: 'C';
+  }
+  &:nth-child(4)::before {
+    content: 'D';
   }
 }
 .main-heading {
